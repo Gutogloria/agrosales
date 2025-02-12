@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "493874376391",
+    "project_id": "acesso-firebase-d0f79",
+    "storage_bucket": "acesso-firebase-d0f79.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493874376391:android:01f97263ca5483948058e2",
+        "android_client_info": {
+          "package_name": "com.example.agro_sales"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYsyLPC-H4cCdiQioN_bvd2AlSOS-6ngA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

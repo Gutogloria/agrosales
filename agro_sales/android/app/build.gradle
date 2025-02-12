@@ -1,0 +1,62 @@
+// Bloco buildscript deve vir antes do plugins{}
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // Defina a versão do Android Gradle Plugin (AGP)
+        classpath 'com.android.tools.build:gradle:8.0.0' // Versão do AGP compatível com Gradle 8.0
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0" // Versão do Kotlin
+        classpath 'com.google.gms:google-services:4.3.15' // Plugin do Google Services
+    }
+}
+
+// Bloco plugins agora pode vir aqui
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id "dev.flutter.flutter-gradle-plugin"
+    id 'com.google.gms.google-services'
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader("UTF-8") { reader ->
+        localProperties.load(reader)
+    }
+}
+
+// Carregar as propriedades do local.properties
+def flutterVersionCode = localProperties.getProperty("flutter.versionCode", "1") // Valor padrão caso não haja no arquivo
+def flutterVersionName = localProperties.getProperty("flutter.versionName", "1.0")
+
+android {
+    namespace = "com.example.agro_sales"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+    
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"  // Garantindo que o Kotlin está usando a JVM 1.8
+    }
+
+    defaultConfig {
+        applicationId = "com.example.agro_sales"
+        minSdk = 23
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutterVersionCode.toInteger()
+        versionName = flutterVersionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug
+        }
+    }
+}
