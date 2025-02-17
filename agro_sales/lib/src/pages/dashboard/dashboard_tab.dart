@@ -106,7 +106,11 @@ class DashboardTab extends StatelessWidget {
           int colorIndex = 0;
 
           breedsCount.keys.forEach((breed) {
-            breedColors[breed] = vibrantColors[colorIndex % vibrantColors.length];
+            if (breed == 'Nelore') {
+              breedColors[breed] = Colors.purple; // Definindo a cor roxa para "Nelore"
+            } else {
+              breedColors[breed] = vibrantColors[colorIndex % vibrantColors.length];
+            }
             colorIndex++;
           });
 
@@ -117,7 +121,7 @@ class DashboardTab extends StatelessWidget {
             final count = entry.value;
             final percentage = totalCount == 0 ? 0 : (count / totalCount) * 100;
             return PieChartSectionData(
-              color: breedColors[breed],
+              color: breedColors[breed] ?? Colors.blue,  // Garantindo que a cor seja atribuída
               value: count.toDouble(),
               title: '${percentage.toStringAsFixed(1)}%',
               radius: 90,
@@ -227,7 +231,7 @@ class DashboardTab extends StatelessWidget {
                             sideTitles: SideTitles(
                               showTitles: true,
                               getTitlesWidget: (value, meta) {
-                                return Text(
+                                return const Text(
                                   'Qtd.',
                                   style: TextStyle(
                                     color: Colors.black,
@@ -244,7 +248,7 @@ class DashboardTab extends StatelessWidget {
                               getTitlesWidget: (value, meta) {
                                 final breeds = breedsCount.keys.toList();
                                 return Text(breeds[value.toInt()] ?? '',
-                                    style: TextStyle(color: Colors.black, fontSize: 14));
+                                    style: const TextStyle(color: Colors.black, fontSize: 14));
                               },
                               reservedSize: 32,
                             ),
@@ -270,6 +274,29 @@ class DashboardTab extends StatelessWidget {
                             ],
                           );
                         }).toList(),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  // Adicionando a legenda com um quadro branco
+                  Card(
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.circle, color: Colors.green, size: 16),
+                          const SizedBox(width: 8),
+                          const Text('Bovino Ativo para Vendas'),
+                          const SizedBox(width: 16),
+                          const Icon(Icons.circle, color: Colors.red, size: 16),
+                          const SizedBox(width: 8),
+                          const Text('Bovino Vendido'),
+                        ],
                       ),
                     ),
                   ),
