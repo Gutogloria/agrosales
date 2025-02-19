@@ -69,8 +69,8 @@ class _SignInScreenState extends State<SignInScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Credenciais Incorretas'),
-          content: const Text('As credenciais fornecidas estão incorretas. Tente novamente.'),
+          title: const Text('Dados Incorretos'),
+          content: const Text('Os dados fornecidos (email ou senha) estão incorretos. Por favor, verifique e tente novamente.'),
           actions: <Widget>[
             TextButton(
               child: const Text('Tentar Novamente'),
