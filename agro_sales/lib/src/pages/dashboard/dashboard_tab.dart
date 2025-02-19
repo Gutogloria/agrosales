@@ -107,7 +107,7 @@ class DashboardTab extends StatelessWidget {
 
           breedsCount.keys.forEach((breed) {
             if (breed == 'Nelore') {
-              breedColors[breed] = Colors.purple; // Definindo a cor roxa para "Nelore"
+              breedColors[breed] = Colors.purple;
             } else {
               breedColors[breed] = vibrantColors[colorIndex % vibrantColors.length];
             }
@@ -121,7 +121,7 @@ class DashboardTab extends StatelessWidget {
             final count = entry.value;
             final percentage = totalCount == 0 ? 0 : (count / totalCount) * 100;
             return PieChartSectionData(
-              color: breedColors[breed] ?? Colors.blue,  // Garantindo que a cor seja atribuída
+              color: breedColors[breed] ?? Colors.blue,
               value: count.toDouble(),
               title: '${percentage.toStringAsFixed(1)}%',
               radius: 90,
@@ -278,7 +278,6 @@ class DashboardTab extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  // Adicionando a legenda com um quadro branco
                   Card(
                     elevation: 4,
                     shape: RoundedRectangleBorder(
